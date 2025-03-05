@@ -1,0 +1,1 @@
+const GameRoute = '/game/';
