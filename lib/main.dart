@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:game2048/game_view.dart';
-import 'package:game2048/routes.dart';
+import 'package:game2048/constants/routes.dart';
 
 void main() {
   runApp(
@@ -30,7 +30,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       // appBar: AppBar(
-      //   title: const Text("2048"),
+      //   title: const Text(""),
       //   backgroundColor: const Color.fromARGB(255, 255, 252, 233),
       // ),
       body: Center(
@@ -38,22 +38,37 @@ class _HomePageState extends State<HomePage> {
           mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(
-              width: 200,
-              child: TextButton(
-                onPressed: () async {
-                  Navigator.of(context).pushNamed(GameRoute);
-                },
-                style: TextButton.styleFrom(
-                  backgroundColor: Color.fromARGB(255, 197, 73, 45),
-                  foregroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
+              width: 250,
+              child: Column(
+                children: [
+                  SizedBox(
+                    width: 200,
+                    child: Image.asset("assets/preview_image.png"),
                   ),
-                ),
-                child: const Text(
-                  'START GAME',
-                  style: TextStyle(fontSize: 18),
-                ),
+                  SizedBox(
+                    height: 50,
+                  ),
+                  SizedBox(
+                    width: 250,
+                    height: 50,
+                    child: TextButton(
+                      onPressed: () async {
+                        Navigator.of(context).pushNamed(GameRoute);
+                      },
+                      style: TextButton.styleFrom(
+                        backgroundColor: Color.fromARGB(255, 197, 73, 45),
+                        foregroundColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      child: const Text(
+                        'START GAME',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
