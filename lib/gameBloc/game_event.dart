@@ -10,21 +10,16 @@ class GameEventInitialize extends GameEvent {
 }
 
 class GameEventReturnHome extends GameEvent {
-  final List<List<int>> box;
-  final int score;
-  const GameEventReturnHome(this.box, this.score);
+  const GameEventReturnHome();
 }
 
 class GameEventPlay extends GameEvent {
-  final List<List<int>> box;
-  final int score;
-  const GameEventPlay(this.box, this.score);
+  const GameEventPlay();
 }
 
 class GameEventUpdateGrid extends GameEvent {
-  final List<List<int>> box;
-  final int score;
-  const GameEventUpdateGrid(this.box, this.score);
+  final String direction;
+  const GameEventUpdateGrid(this.direction);
 }
 
 class GameEventReset extends GameEvent {

@@ -9,7 +9,6 @@ class GameBloc extends Bloc<GameEvent, GameState> {
       gameController.initializeGame();
       emit(
         GameStateHomePage(
-          box: gameController.box,
           score: 0,
         ),
       );
@@ -18,8 +17,7 @@ class GameBloc extends Bloc<GameEvent, GameState> {
     on<GameEventPlay>((event, emit) {
       emit(
         GameStateGamePage(
-          box: event.box,
-          score: event.score,
+          score: gameController.score,
         ),
       );
     });
@@ -28,7 +26,6 @@ class GameBloc extends Bloc<GameEvent, GameState> {
       gameController.initializeGame();
       emit(
         GameStateGamePage(
-          box: gameController.box,
           score: 0,
         ),
       );
@@ -37,12 +34,19 @@ class GameBloc extends Bloc<GameEvent, GameState> {
     on<GameEventReturnHome>((event, emit) {
       emit(
         GameStateHomePage(
-          box: event.box,
-          score: event.score,
+          score: gameController.score,
         ),
       );
     });
 
-    on<GameEventUpdateGrid>((event, emit) {});
+    on<GameEventUpdateGrid>((event, emit) {
+      print("reached");
+      gameController.movement(event.direction);
+      emit(
+        GameStateGamePage(
+          score: 0,
+        ),
+      );
+    });
   }
 }

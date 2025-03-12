@@ -1,11 +1,25 @@
+import 'dart:async';
 import 'dart:math';
 
 class GameLogic {
-  List<List<int>> box;
+  List<List<int>> box = [];
+  int score = 0;
 
-  GameLogic({required this.box});
+  GameLogic._sharedInstance() {
+    _gridStreamController =
+        StreamController<List<List<int>>>.broadcast(onListen: () {
+      _gridStreamController.sink.add(box);
+    });
+  }
+  static final GameLogic _shared = GameLogic._sharedInstance();
+  factory GameLogic() => _shared;
+
+  late final StreamController<List<List<int>>> _gridStreamController;
+
+  Stream<List<List<int>>> get grid => _gridStreamController.stream;
 
   void initializeGame() {
+    score = 0;
     box = List.generate(4, (_) => List.filled(4, 0));
     List<String> spaces = [
       '00',
@@ -30,6 +44,7 @@ class GameLogic {
     String pos2 = pickPosition(spaces);
     box[int.parse(pos1[0])][int.parse(pos1[1])] = generateDigit();
     box[int.parse(pos2[0])][int.parse(pos2[1])] = generateDigit();
+    _gridStreamController.add(box);
   }
 
   String pickPosition(List<String> spaces) {
@@ -43,19 +58,20 @@ class GameLogic {
   Function direction(String cmd) {
     switch (cmd) {
       case 'A':
-        return (int i, int j) => (i, j);
+        return (int i, int j) => [i, j];
       case 'D':
-        return (int i, int j) => (i, 3 - j);
+        return (int i, int j) => [i, 3 - j];
       case 'W':
-        return (int i, int j) => (j, i);
+        return (int i, int j) => [j, i];
       case 'S':
-        return (int i, int j) => (3 - j, i);
+        return (int i, int j) => [3 - j, i];
       default:
-        return (int i, int j) => (i, j);
+        return (int i, int j) => [i, j];
     }
   }
 
   void movement(String cmd) {
+    print("reached");
     List<String> spaces = [];
     var func = direction(cmd);
     List<int> coord;
@@ -128,5 +144,6 @@ class GameLogic {
     }
     String pos = pickPosition(spaces);
     box[int.parse(pos[0])][int.parse(pos[1])] = generateDigit();
+    _gridStreamController.add(box);
   }
 }

@@ -10,13 +10,11 @@ class GameStateUninitialized extends GameState {
 }
 
 class GameStateHomePage extends GameState {
-  final List<List<int>> box;
   final int score;
-  const GameStateHomePage({required this.box, required this.score});
+  const GameStateHomePage({required this.score});
 }
 
 class GameStateGamePage extends GameState {
-  final List<List<int>> box;
   final int score;
-  const GameStateGamePage({required this.box, required this.score});
+  const GameStateGamePage({required this.score});
 }
