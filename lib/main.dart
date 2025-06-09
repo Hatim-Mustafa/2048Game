@@ -39,7 +39,7 @@ class _HomePageState extends State<HomePage> {
       builder: (context, state) {
         if (state is GameStateHomePage) {
           return HomeView();
-        } else if (state is GameStateGamePage) {
+        } else if (state is GameStateGamePage || state is GameStateGameOver) {
           return GameView();
         } else {
           return CircularProgressIndicator();

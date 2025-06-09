@@ -26,7 +26,7 @@ class GameBloc extends Bloc<GameEvent, GameState> {
       gameController.initializeGame();
       emit(
         GameStateGamePage(
-          score: 0,
+          score: gameController.score,
         ),
       );
     });
@@ -40,11 +40,35 @@ class GameBloc extends Bloc<GameEvent, GameState> {
     });
 
     on<GameEventUpdateGrid>((event, emit) {
-      print("reached");
-      gameController.movement(event.direction);
+      gameController.move(event.direction);
       emit(
         GameStateGamePage(
-          score: 0,
+          score: gameController.score,
+        ),
+      );
+
+      gameController.merge(event.direction);
+      emit(
+        GameStateGamePage(
+          score: gameController.score,
+        ),
+      );
+
+      bool gameOver = gameController.gameOver();
+      if (gameOver) {
+        emit(
+          GameStateGameOver(
+            score: gameController.score,
+          ),
+        );
+      }
+    });
+
+    on<GameEventUndo>((event, emit) {
+      gameController.undo();
+      emit(
+        GameStateGamePage(
+          score: gameController.score,
         ),
       );
     });

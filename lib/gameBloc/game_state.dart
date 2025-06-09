@@ -18,3 +18,9 @@ class GameStateGamePage extends GameState {
   final int score;
   const GameStateGamePage({required this.score});
 }
+
+class GameStateGameOver extends GameState {
+  final int score;
+  const GameStateGameOver({required this.score});
+}
+

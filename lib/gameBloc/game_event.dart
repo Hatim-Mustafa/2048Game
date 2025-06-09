@@ -25,3 +25,7 @@ class GameEventUpdateGrid extends GameEvent {
 class GameEventReset extends GameEvent {
   const GameEventReset();
 }
+
+class GameEventUndo extends GameEvent {
+  const GameEventUndo();
+}

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:game2048/constants/color_codes.dart';
 
 class BoxView extends StatelessWidget {
-  const BoxView({super.key, required this.grid});
+  const BoxView({super.key, required this.grid,});
 
   final List<List<int>> grid;
 
@@ -22,22 +22,13 @@ class BoxView extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 25,
                           fontWeight: FontWeight.bold,
-                          color: Color.fromRGBO(
-                            textCodes[grid[index ~/ 4][index % 4]]![0],
-                            textCodes[grid[index ~/ 4][index % 4]]![1],
-                            textCodes[grid[index ~/ 4][index % 4]]![2],
-                            1,
-                          ),
+                          color: textCodes[grid[index ~/ 4][index % 4]] ??
+                              defaultText,
                         ),
                       ),
                     ),
                     decoration: BoxDecoration(
-                      color: Color.fromRGBO(
-                        bgCodes[grid[index ~/ 4][index % 4]]![0],
-                        bgCodes[grid[index ~/ 4][index % 4]]![1],
-                        bgCodes[grid[index ~/ 4][index % 4]]![2],
-                        1,
-                      ),
+                      color: bgCodes[grid[index ~/ 4][index % 4]] ?? defaultBg,
                       borderRadius: BorderRadius.circular(6),
                     ), //Tile Background
                   )
