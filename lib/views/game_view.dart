@@ -192,8 +192,8 @@ class _GameViewState extends State<GameView> {
                                 switch (snapshot.connectionState) {
                                   case ConnectionState.active:
                                     final box =
-                                        snapshot.data as List<List<int>>;
-                                    return BoxView(grid: box);
+                                        snapshot.data as List<Tile>;
+                                    return BoxView(list: box);
                                   default:
                                     return CircularProgressIndicator();
                                 }

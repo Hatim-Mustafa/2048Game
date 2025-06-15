@@ -29,3 +29,7 @@ class GameEventReset extends GameEvent {
 class GameEventUndo extends GameEvent {
   const GameEventUndo();
 }
+
+class GameEventMergeFinish extends GameEvent {
+  const GameEventMergeFinish();
+}

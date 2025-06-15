@@ -14,7 +14,16 @@ class GameBloc extends Bloc<GameEvent, GameState> {
       );
     });
 
-    on<GameEventPlay>((event, emit) {
+    on<GameEventPlay>((event, emit) async {
+      emit(
+        GameStateGamePage(
+          score: gameController.score,
+        ),
+      );
+
+      await Future.delayed(const Duration(milliseconds: 100));
+
+      gameController.mergeComplete();
       emit(
         GameStateGamePage(
           score: gameController.score,
@@ -22,8 +31,17 @@ class GameBloc extends Bloc<GameEvent, GameState> {
       );
     });
 
-    on<GameEventReset>((event, emit) {
+    on<GameEventReset>((event, emit) async {
       gameController.initializeGame();
+      emit(
+        GameStateGamePage(
+          score: gameController.score,
+        ),
+      );
+
+      await Future.delayed(const Duration(milliseconds: 100));
+
+      gameController.mergeComplete();
       emit(
         GameStateGamePage(
           score: gameController.score,
@@ -39,7 +57,7 @@ class GameBloc extends Bloc<GameEvent, GameState> {
       );
     });
 
-    on<GameEventUpdateGrid>((event, emit) {
+    on<GameEventUpdateGrid>((event, emit) async {
       gameController.move(event.direction);
       emit(
         GameStateGamePage(
@@ -47,7 +65,18 @@ class GameBloc extends Bloc<GameEvent, GameState> {
         ),
       );
 
+      await Future.delayed(const Duration(milliseconds: 180));
+
       gameController.merge(event.direction);
+      emit(
+        GameStateGamePage(
+          score: gameController.score,
+        ),
+      );
+
+      await Future.delayed(const Duration(milliseconds: 100));
+
+      gameController.mergeComplete();
       emit(
         GameStateGamePage(
           score: gameController.score,
@@ -66,6 +95,15 @@ class GameBloc extends Bloc<GameEvent, GameState> {
 
     on<GameEventUndo>((event, emit) {
       gameController.undo();
+      emit(
+        GameStateGamePage(
+          score: gameController.score,
+        ),
+      );
+    });
+
+    on<GameEventMergeFinish>((event, emit) {
+      gameController.mergeComplete();
       emit(
         GameStateGamePage(
           score: gameController.score,
