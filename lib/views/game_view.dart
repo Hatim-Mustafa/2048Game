@@ -87,7 +87,7 @@ class _GameViewState extends State<GameView> {
                         Row(
                           children: [
                             SizedBox(
-                              width: 10,
+                              width: MediaQuery.of(context).size.width/36,
                             ),
                             Container(
                               child: IconButton(
@@ -121,7 +121,7 @@ class _GameViewState extends State<GameView> {
                               ),
                             ),
                             SizedBox(
-                              width: 10,
+                              width: MediaQuery.of(context).size.width/36,
                             ),
                             Container(
                               child: IconButton(
@@ -140,14 +140,14 @@ class _GameViewState extends State<GameView> {
                       ],
                     ),
                     SizedBox(
-                      width: 10,
+                      width: MediaQuery.of(context).size.width/36,
                     ),
                     Container(
                       width: (MediaQuery.of(context).size.width - 30) / 2,
                       height: MediaQuery.of(context).size.height / 7.7,
                       child: Column(
                         children: [
-                          SizedBox(height: 10),
+                          SizedBox(height: MediaQuery.of(context).size.height/80),
                           Text(
                             "Score",
                             style: TextStyle(
@@ -177,7 +177,7 @@ class _GameViewState extends State<GameView> {
                   ],
                 ),
                 SizedBox(
-                  height: 10,
+                  height: MediaQuery.of(context).size.height/80,
                 ),
                 Center(
                   child: SizedBox(

@@ -14,28 +14,24 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: const Text(""),
-      //   backgroundColor: const Color.fromARGB(255, 255, 252, 233),
-      // ),
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(
-              width: 250,
+              width: MediaQuery.of(context).size.width / 1.44,
               child: Column(
                 children: [
                   SizedBox(
-                    width: 200,
+                    width: MediaQuery.of(context).size.width / 1.8,
                     child: Image.asset("assets/preview_image.png"),
                   ),
                   SizedBox(
-                    height: 50,
+                    height: MediaQuery.of(context).size.height / 16,
                   ),
                   SizedBox(
-                    width: 250,
-                    height: 50,
+                    width: MediaQuery.of(context).size.width / 1.44,
+                    height: MediaQuery.of(context).size.height / 16,
                     child: TextButton(
                       onPressed: () {
                         context.read<GameBloc>().add(GameEventPlay());
@@ -59,7 +55,7 @@ class _HomeViewState extends State<HomeView> {
           ],
         ),
       ),
-      backgroundColor: const Color.fromARGB(255, 255, 252, 233),
+      backgroundColor: const Color(0xFFFFFCE9),
     );
   }
 }

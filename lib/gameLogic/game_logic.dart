@@ -249,9 +249,6 @@ class GameLogic {
       }
     }
 
-    print(numList);
-    print(prevList);
-
     bool same = true;
     if (numList.length == prevList.length) {
       for (int i = 0; i < numList.length; i++) {
