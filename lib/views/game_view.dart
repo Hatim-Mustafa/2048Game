@@ -39,33 +39,33 @@ class _GameViewState extends State<GameView> {
         }
       },
       builder: (context, state) {
-        return Scaffold(
-          appBar: AppBar(
-            title: const Text(""),
-            backgroundColor: const Color.fromARGB(255, 255, 252, 233),
-          ),
-          body: GestureDetector(
-            onHorizontalDragEnd: (details) {
-              if (gameOver) {
-                return;
-              }
-              if (details.primaryVelocity! > 0) {
-                context.read<GameBloc>().add(GameEventUpdateGrid(right));
-              } else {
-                context.read<GameBloc>().add(GameEventUpdateGrid(left));
-              }
-            },
-            onVerticalDragEnd: (details) {
-              if (gameOver) {
-                return;
-              }
-              if (details.primaryVelocity! > 0) {
-                context.read<GameBloc>().add(GameEventUpdateGrid(down));
-              } else {
-                context.read<GameBloc>().add(GameEventUpdateGrid(up));
-              }
-            },
-            child: Column(
+        return GestureDetector(
+          onHorizontalDragEnd: (details) {
+            if (gameOver) {
+              return;
+            }
+            if (details.primaryVelocity! > 0) {
+              context.read<GameBloc>().add(GameEventUpdateGrid(right));
+            } else {
+              context.read<GameBloc>().add(GameEventUpdateGrid(left));
+            }
+          },
+          onVerticalDragEnd: (details) {
+            if (gameOver) {
+              return;
+            }
+            if (details.primaryVelocity! > 0) {
+              context.read<GameBloc>().add(GameEventUpdateGrid(down));
+            } else {
+              context.read<GameBloc>().add(GameEventUpdateGrid(up));
+            }
+          },
+          child: Scaffold(
+            appBar: AppBar(
+              title: const Text(""),
+              backgroundColor: const Color.fromARGB(255, 255, 252, 233),
+            ),
+            body: Column(
               children: [
                 SizedBox(height: MediaQuery.of(context).size.height / 8.5),
                 Row(
@@ -87,7 +87,7 @@ class _GameViewState extends State<GameView> {
                         Row(
                           children: [
                             SizedBox(
-                              width: MediaQuery.of(context).size.width/36,
+                              width: MediaQuery.of(context).size.width / 36,
                             ),
                             Container(
                               child: IconButton(
@@ -121,7 +121,7 @@ class _GameViewState extends State<GameView> {
                               ),
                             ),
                             SizedBox(
-                              width: MediaQuery.of(context).size.width/36,
+                              width: MediaQuery.of(context).size.width / 36,
                             ),
                             Container(
                               child: IconButton(
@@ -140,14 +140,15 @@ class _GameViewState extends State<GameView> {
                       ],
                     ),
                     SizedBox(
-                      width: MediaQuery.of(context).size.width/36,
+                      width: MediaQuery.of(context).size.width / 36,
                     ),
                     Container(
                       width: (MediaQuery.of(context).size.width - 30) / 2,
                       height: MediaQuery.of(context).size.height / 7.7,
                       child: Column(
                         children: [
-                          SizedBox(height: MediaQuery.of(context).size.height/80),
+                          SizedBox(
+                              height: MediaQuery.of(context).size.height / 80),
                           Text(
                             "Score",
                             style: TextStyle(
@@ -177,7 +178,7 @@ class _GameViewState extends State<GameView> {
                   ],
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height/80,
+                  height: MediaQuery.of(context).size.height / 80,
                 ),
                 Center(
                   child: SizedBox(
@@ -191,8 +192,7 @@ class _GameViewState extends State<GameView> {
                               builder: (context, snapshot) {
                                 switch (snapshot.connectionState) {
                                   case ConnectionState.active:
-                                    final box =
-                                        snapshot.data as List<Tile>;
+                                    final box = snapshot.data as List<Tile>;
                                     return BoxView(list: box);
                                   default:
                                     return CircularProgressIndicator();
@@ -230,8 +230,8 @@ class _GameViewState extends State<GameView> {
                 ),
               ],
             ),
-          ),
-          backgroundColor: const Color.fromARGB(255, 255, 252, 233),
+            backgroundColor: const Color.fromARGB(255, 255, 252, 233),
+          ), 
         );
       },
     );
